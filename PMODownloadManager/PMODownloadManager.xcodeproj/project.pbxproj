@@ -13,7 +13,8 @@
 		C7CFB51D1CBA76F3003AA121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7CFB51B1CBA76F3003AA121 /* Main.storyboard */; };
 		C7CFB51F1CBA76F3003AA121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7CFB51E1CBA76F3003AA121 /* Assets.xcassets */; };
 		C7CFB5221CBA76F3003AA121 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7CFB5201CBA76F3003AA121 /* LaunchScreen.storyboard */; };
-		C7CFB52D1CBA76F3003AA121 /* PMODownloadManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CFB52C1CBA76F3003AA121 /* PMODownloadManagerTests.m */; };
+		C7CFB53A1CBA773D003AA121 /* PMOHTTPDowloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CFB5391CBA773D003AA121 /* PMOHTTPDowloadManager.m */; };
+		C7CFB53C1CBA7A73003AA121 /* PMOHTTPDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CFB53B1CBA7A73003AA121 /* PMOHTTPDownloadManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +39,10 @@
 		C7CFB5211CBA76F3003AA121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7CFB5231CBA76F3003AA121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7CFB5281CBA76F3003AA121 /* PMODownloadManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PMODownloadManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C7CFB52C1CBA76F3003AA121 /* PMODownloadManagerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PMODownloadManagerTests.m; sourceTree = "<group>"; };
 		C7CFB52E1CBA76F3003AA121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7CFB5381CBA773D003AA121 /* PMOHTTPDowloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMOHTTPDowloadManager.h; sourceTree = "<group>"; };
+		C7CFB5391CBA773D003AA121 /* PMOHTTPDowloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMOHTTPDowloadManager.m; sourceTree = "<group>"; };
+		C7CFB53B1CBA7A73003AA121 /* PMOHTTPDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMOHTTPDownloadManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		C7CFB5111CBA76F3003AA121 /* PMODownloadManager */ = {
 			isa = PBXGroup;
 			children = (
+				C7CFB5371CBA772C003AA121 /* Managers */,
 				C7CFB5151CBA76F3003AA121 /* AppDelegate.h */,
 				C7CFB5161CBA76F3003AA121 /* AppDelegate.m */,
 				C7CFB5181CBA76F3003AA121 /* ViewController.h */,
@@ -105,10 +109,19 @@
 		C7CFB52B1CBA76F3003AA121 /* PMODownloadManagerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C7CFB52C1CBA76F3003AA121 /* PMODownloadManagerTests.m */,
+				C7CFB53B1CBA7A73003AA121 /* PMOHTTPDownloadManager.m */,
 				C7CFB52E1CBA76F3003AA121 /* Info.plist */,
 			);
 			path = PMODownloadManagerTests;
+			sourceTree = "<group>";
+		};
+		C7CFB5371CBA772C003AA121 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C7CFB5381CBA773D003AA121 /* PMOHTTPDowloadManager.h */,
+				C7CFB5391CBA773D003AA121 /* PMOHTTPDowloadManager.m */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +227,7 @@
 				C7CFB51A1CBA76F3003AA121 /* ViewController.m in Sources */,
 				C7CFB5171CBA76F3003AA121 /* AppDelegate.m in Sources */,
 				C7CFB5141CBA76F3003AA121 /* main.m in Sources */,
+				C7CFB53A1CBA773D003AA121 /* PMOHTTPDowloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C7CFB52D1CBA76F3003AA121 /* PMODownloadManagerTests.m in Sources */,
+				C7CFB53C1CBA7A73003AA121 /* PMOHTTPDownloadManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
