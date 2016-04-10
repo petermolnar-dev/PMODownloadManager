@@ -31,5 +31,9 @@
     XCTAssertTrue(true);
 }
 
+-(void)testForMultipleDownload {
+    
+}
+
 
 @end

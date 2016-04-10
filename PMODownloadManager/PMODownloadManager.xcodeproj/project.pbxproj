@@ -15,6 +15,8 @@
 		C7CFB5221CBA76F3003AA121 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7CFB5201CBA76F3003AA121 /* LaunchScreen.storyboard */; };
 		C7CFB53A1CBA773D003AA121 /* PMOHTTPDowloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CFB5391CBA773D003AA121 /* PMOHTTPDowloadManager.m */; };
 		C7CFB53C1CBA7A73003AA121 /* PMOHTTPDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CFB53B1CBA7A73003AA121 /* PMOHTTPDownloadManager.m */; };
+		C7CFB5421CBA7E8B003AA121 /* PMODownloadTaskQueueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CFB5411CBA7E8B003AA121 /* PMODownloadTaskQueueManager.m */; };
+		C7CFB5441CBA82AB003AA121 /* PMODownloadTaskQueueManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C7CFB5431CBA82AB003AA121 /* PMODownloadTaskQueueManagerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,9 @@
 		C7CFB5381CBA773D003AA121 /* PMOHTTPDowloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMOHTTPDowloadManager.h; sourceTree = "<group>"; };
 		C7CFB5391CBA773D003AA121 /* PMOHTTPDowloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMOHTTPDowloadManager.m; sourceTree = "<group>"; };
 		C7CFB53B1CBA7A73003AA121 /* PMOHTTPDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMOHTTPDownloadManager.m; sourceTree = "<group>"; };
+		C7CFB5401CBA7E8B003AA121 /* PMODownloadTaskQueueManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMODownloadTaskQueueManager.h; sourceTree = "<group>"; };
+		C7CFB5411CBA7E8B003AA121 /* PMODownloadTaskQueueManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMODownloadTaskQueueManager.m; sourceTree = "<group>"; };
+		C7CFB5431CBA82AB003AA121 /* PMODownloadTaskQueueManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMODownloadTaskQueueManagerTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +114,7 @@
 		C7CFB52B1CBA76F3003AA121 /* PMODownloadManagerTests */ = {
 			isa = PBXGroup;
 			children = (
+				C7CFB5431CBA82AB003AA121 /* PMODownloadTaskQueueManagerTests.m */,
 				C7CFB53B1CBA7A73003AA121 /* PMOHTTPDownloadManager.m */,
 				C7CFB52E1CBA76F3003AA121 /* Info.plist */,
 			);
@@ -120,6 +126,8 @@
 			children = (
 				C7CFB5381CBA773D003AA121 /* PMOHTTPDowloadManager.h */,
 				C7CFB5391CBA773D003AA121 /* PMOHTTPDowloadManager.m */,
+				C7CFB5401CBA7E8B003AA121 /* PMODownloadTaskQueueManager.h */,
+				C7CFB5411CBA7E8B003AA121 /* PMODownloadTaskQueueManager.m */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -228,6 +236,7 @@
 				C7CFB5171CBA76F3003AA121 /* AppDelegate.m in Sources */,
 				C7CFB5141CBA76F3003AA121 /* main.m in Sources */,
 				C7CFB53A1CBA773D003AA121 /* PMOHTTPDowloadManager.m in Sources */,
+				C7CFB5421CBA7E8B003AA121 /* PMODownloadTaskQueueManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7CFB53C1CBA7A73003AA121 /* PMOHTTPDownloadManager.m in Sources */,
+				C7CFB5441CBA82AB003AA121 /* PMODownloadTaskQueueManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
