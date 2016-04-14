@@ -29,6 +29,14 @@
     return _normalPriorityQueue;
 }
 
+- (NSMutableArray *)highPriorityQueue
+{
+    if (!_highPriorityQueue) {
+        _highPriorityQueue = [[NSMutableArray alloc] init];
+    }
+    
+    return _highPriorityQueue;
+}
 
 
 #pragma mark - Public interface implementation
@@ -36,7 +44,59 @@
 - (void)addDownloadTaskToNormalPriorityQueue:(NSURLSessionTask *)task
 {
     [self.normalPriorityQueue addObject:task];
+    if ([self isHighPriorityQueueEmpty]) {
+        [self startTask:task];
+    }
+}
+
+
+- (void)removeDownloadTask:(NSURLSessionTask *)task
+{
+    [self cancelTask:task];
+    [self.highPriorityQueue removeObject:task];
+    [self.normalPriorityQueue removeObject:task];
+    [self resumeNormalPriorityQueue];
+    
+}
+
+
+- (void)addDownloadTaskToHighPriorityQueue:(NSURLSessionTask *)task
+{
+    // TODO: Check if task with same url exists in the other queue,
+    // If yes, then move it to here
+    [self.highPriorityQueue addObject:task];
+    task.priority = NSURLSessionTaskPriorityHigh;
     [self startTask:task];
+    [self suspendNormalPriorityQueue];
+}
+
+- (void)removeAllTasksFromHighPriorityQueue
+{
+    // TODO: Suspend all of the active tasks in the HPQ,
+    // decrease the priority of the task
+    // Move them to the NPQ
+    [self resumeNormalPriorityQueue];
+    
+}
+
+
+- (void)cleanQueues {
+    
+    [self cleanQueue:self.normalPriorityQueue];
+    [self cleanQueue:self.highPriorityQueue];
+    
+}
+
+#pragma mark - Private functions
+- (BOOL)isHighPriorityQueueEmpty
+{
+    [self cleanQueues];
+    if (self.highPriorityQueue.count == 0) {
+        return true;
+    } else {
+        return false;
+    }
+    
 }
 
 - (void)suspendNormalPriorityQueue
@@ -48,29 +108,31 @@
 
 - (void)resumeNormalPriorityQueue
 {
-    for (NSURLSessionTask *currentTask in self.normalPriorityQueue) {
-        [self startTask:currentTask];
+    if ([self isHighPriorityQueueEmpty]) {
+        for (NSURLSessionTask *currentTask in self.normalPriorityQueue) {
+            [self startTask:currentTask];
+        }
     }
-   
+    
 }
 
-- (void)addDownloadTaskToHighPriorityQueue:(NSURLSessionTask *)task
+- (void)cancelHighPriorityQueue
 {
-    // TODO: Check if task with same url exists in the other queue,
-    // If yes, then mmove it to here
-    // If not add to the proiryt queue.
-    // Increase the priority of the task
+    for (NSURLSessionTask *currentTask in self.normalPriorityQueue) {
+        [self cancelTask:currentTask];
+    }
+
 }
 
-- (void)removeAllTasksFromHighPriorityQueue
-{
-    // TODO: Suspend all of the active tasks in the HPQ,
-    // decrease the priority of the task
-    // Move them to the NPQ
-    // resume them.
+-(void)cleanQueue: (NSMutableArray *)queue {
+    
+    for (NSURLSessionTask *task in queue) {
+        if (task.state == NSURLSessionTaskStateCompleted || task.state == NSURLSessionTaskStateCanceling) {
+            [self removeDownloadTask:task];
+        }
+    }
 }
 
-#pragma mark - Private functions
 
 - (void)startTask:(NSURLSessionTask *)task
 {
@@ -89,7 +151,13 @@
     [task suspend];
 }
 
-
+- (void)cancelTask: (NSURLSessionTask *)task
+{
+    if (self.isDebug) {
+        NSLog(@"Task cancelled: %@",task.currentRequest.URL);
+    }
+    [task cancel];
+}
 
 
 @end
