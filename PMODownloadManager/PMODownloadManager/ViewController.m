@@ -52,11 +52,11 @@
 
 }
 - (IBAction)dlButtonTapped:(id)sender {
-    [self.queueManager suspendNormalPriorityQueue];
+//    [self.queueManager suspendNormalPriorityQueue];
 }
 
 - (IBAction)resumeButtonTapped:(id)sender {
-    [self.queueManager resumeNormalPriorityQueue];
+//    [self.queueManager resumeNormalPriorityQueue];
 }
 
 
