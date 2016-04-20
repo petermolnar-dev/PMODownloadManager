@@ -44,10 +44,23 @@
                                           ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
                                               // Completion
                                               
-                                              NSLog(@"%@ Download is done",url);
+                                              NSLog(@"%@ Download is done",url2);
                                               
                                           }];
     [self.queueManager addDownloadTaskToNormalPriorityQueue:downloadTask2];
+    
+    NSURL *url3 = [NSURL URLWithString:@"http://93.175.29.76/web/wwdc/wwdc7.png"];
+    NSURLRequest *request3 = [NSURLRequest requestWithURL:url3];
+    
+    NSURLSessionDataTask *downloadTask3 = [self.session dataTaskWithRequest:request3 completionHandler:
+                                           ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                               // Completion
+                                               
+                                               NSLog(@"%@ Download is done",url3);
+                                               
+                                           }];
+    [self.queueManager addDownloadTaskToHighPriorityQueue:downloadTask3];
+
 
 
 }

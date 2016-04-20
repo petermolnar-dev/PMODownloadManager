@@ -43,10 +43,7 @@
 
 - (void)addDownloadTaskToNormalPriorityQueue:(NSURLSessionTask *)task
 {
-    [self.normalPriorityQueue addObject:task];
-    if ([self isHighPriorityQueueEmpty]) {
-        [self startTask:task];
-    }
+    [self addTask:task toQueue:self.normalPriorityQueue];
 }
 
 
@@ -55,7 +52,7 @@
     [self cancelTask:task];
     [self.highPriorityQueue removeObject:task];
     [self.normalPriorityQueue removeObject:task];
-    [self resumeNormalPriorityQueue];
+    [self resumeQueue:self.normalPriorityQueue];
     
 }
 
@@ -67,15 +64,15 @@
     [self.highPriorityQueue addObject:task];
     task.priority = NSURLSessionTaskPriorityHigh;
     [self startTask:task];
-    [self suspendNormalPriorityQueue];
+    [self suspendQueue:self.normalPriorityQueue];
 }
 
 - (void)removeAllTasksFromHighPriorityQueue
 {
-    // TODO: Suspend all of the active tasks in the HPQ,
-    // decrease the priority of the task
-    // Move them to the NPQ
-    [self resumeNormalPriorityQueue];
+    [self suspendQueue:self.highPriorityQueue];
+    [self resetPrioritiesInQueue:self.highPriorityQueue];
+    [self moveAllTasksFromQueue:self.highPriorityQueue toQueue:self.normalPriorityQueue];
+    [self resumeQueue:self.normalPriorityQueue];
     
 }
 
@@ -88,6 +85,7 @@
 }
 
 #pragma mark - Private functions
+
 - (BOOL)isHighPriorityQueueEmpty
 {
     [self cleanQueues];
@@ -99,28 +97,50 @@
     
 }
 
-- (void)suspendNormalPriorityQueue
+- (NSURLSessionTask *) addTask: (NSURLSessionTask *)task toQueue: (NSMutableArray *)queue
 {
-    for (NSURLSessionTask *currentTask in self.normalPriorityQueue) {
+    [queue addObject:task];
+    [self resumeQueue:queue];
+    return task;
+}
+
+
+
+#pragma mark - Queue operations
+
+-(BOOL)isQueueCanBeStarted: (NSMutableArray *)queue {
+    if (([queue isEqual:self.normalPriorityQueue] && [self isHighPriorityQueueEmpty]) || [queue isEqual:self.highPriorityQueue]) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+- (void)suspendQueue: (NSMutableArray *)queue
+{
+    [self cleanQueues];
+    for (NSURLSessionTask *currentTask in queue) {
         [self suspendTask:currentTask];
     }
 }
 
-- (void)resumeNormalPriorityQueue
+- (void)resumeQueue: (NSMutableArray *)queue
 {
-    if ([self isHighPriorityQueueEmpty]) {
-        for (NSURLSessionTask *currentTask in self.normalPriorityQueue) {
+    [self cleanQueues];
+    if ([self isQueueCanBeStarted:queue]) {
+        for (NSURLSessionTask *currentTask in queue) {
             [self startTask:currentTask];
         }
     }
     
 }
 
-- (void)cancelHighPriorityQueue
+- (void)cancelQueue: (NSMutableArray *)queue
 {
-    for (NSURLSessionTask *currentTask in self.normalPriorityQueue) {
+    for (NSURLSessionTask *currentTask in queue) {
         [self cancelTask:currentTask];
     }
+    [self cleanQueues];
 
 }
 
@@ -133,6 +153,26 @@
     }
 }
 
+- (void)resetPrioritiesInQueue: (NSMutableArray *)queue
+{
+    for (NSURLSessionTask *task in queue) {
+        [self changeTaskPriorityToNormal:task];
+        
+    }
+    
+}
+
+-(void)moveAllTasksFromQueue: (NSMutableArray *)sourceQueue toQueue: (NSMutableArray *)destinationQueue
+{
+    for (NSURLSessionTask *task in sourceQueue) {
+        [self changeTaskPriorityToNormal:task];
+        
+    }
+}
+
+
+
+#pragma mark - Task state manipulation
 
 - (void)startTask:(NSURLSessionTask *)task
 {
@@ -159,5 +199,9 @@
     [task cancel];
 }
 
+
+-(void)changeTaskPriorityToNormal: (NSURLSessionTask *)task {
+    task.priority = NSURLSessionTaskPriorityDefault;
+}
 
 @end

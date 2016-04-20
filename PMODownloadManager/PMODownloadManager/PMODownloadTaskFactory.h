@@ -10,6 +10,6 @@
 
 @interface PMODownloadTaskFactory : NSObject
 
-+ (NSURLSessionDataTask *)createNewTaskWithURLString:(NSString *)urlAsString withDelegate:(id)delegate session:(NSURLSession *)session
++ (NSURLSessionDataTask *)createNewTaskWithURLString:(NSString *)urlAsString withDelegate:(id)delegate session:(NSURLSession *)session;
 
 @end

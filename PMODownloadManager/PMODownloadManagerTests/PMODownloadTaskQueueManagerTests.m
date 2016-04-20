@@ -26,18 +26,6 @@
     _session = [NSURLSession sessionWithConfiguration:sessionConfiguration
                                              delegate:nil
                                         delegateQueue:nil];
-
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
--(void)testNormalQueue {
-    
-    
-    
     NSURL *url = [NSURL URLWithString:@"http://93.175.29.76/web/wwdc/wwdc5.png"];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -47,8 +35,29 @@
                                               
                                               NSLog(@"%@ Download is done",url);
                                               
-                                        }];
+                                          }];
     [self.queueManager addDownloadTaskToNormalPriorityQueue:downloadTask];
+    
+    NSURL *url2 = [NSURL URLWithString:@"http://93.175.29.76/web/wwdc/wwdc6.png"];
+    NSURLRequest *request2 = [NSURLRequest requestWithURL:url2];
+    
+    NSURLSessionDataTask *downloadTask2 = [self.session dataTaskWithRequest:request2 completionHandler:
+                                           ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                               // Completion
+                                               
+                                               NSLog(@"%@ Download is done",url);
+                                               
+                                           }];
+    [self.queueManager addDownloadTaskToNormalPriorityQueue:downloadTask2];}
+
+- (void)tearDown {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+}
+
+-(void)testNormalQueue {
+    
+    
 
 
 }
