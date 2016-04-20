@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PMODownloadTaskQueueManager : NSObject
+@interface PMODownloadTaskQueues : NSObject
 
 @property (assign, nonatomic) BOOL isDebug;
 

@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PMODownloadTaskQueueManager.h"
+#import "PMODownloadTaskQueues.h"
 @interface PMODownloadTaskQueueManagerTests : XCTestCase
 
-@property (strong, nonatomic) PMODownloadTaskQueueManager *queueManager;
+@property (strong, nonatomic) PMODownloadTaskQueues *queueManager;
 @property (strong, nonatomic) NSURLSession *session;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright © 2016 Peter Molnar. All rights reserved.
 //
 
-#import "PMODownloadTaskQueueManager.h"
+#import "PMODownloadTaskQueues.h"
 
-@interface PMODownloadTaskQueueManager()
+@interface PMODownloadTaskQueues()
 
 @property (strong, nonatomic) NSMutableArray *normalPriorityQueue;
 @property (strong, nonatomic) NSMutableArray *highPriorityQueue;
@@ -16,7 +16,7 @@
 
 @end
 
-@implementation PMODownloadTaskQueueManager
+@implementation PMODownloadTaskQueues
 
 #pragma mark - Accessors
 

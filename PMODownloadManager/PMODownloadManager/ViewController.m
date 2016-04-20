@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "PMODownloadTaskQueueManager.h"
+#import "PMODownloadTaskQueues.h"
 @interface ViewController ()
-@property (strong, nonatomic) PMODownloadTaskQueueManager *queueManager;
+@property (strong, nonatomic) PMODownloadTaskQueues *queueManager;
 @property (strong, nonatomic) NSURLSession *session;
 @property (strong, nonatomic) IBOutlet UIButton *DLButton;
 @end
