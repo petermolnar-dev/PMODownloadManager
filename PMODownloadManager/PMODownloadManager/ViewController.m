@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.queueManager = [[PMODownloadTaskQueueManager alloc] init];
+    self.queueManager = [[PMODownloadTaskQueues alloc] init];
     [self.queueManager setIsDebug:true];
     NSURLSessionConfiguration *sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
     //TODO: Check how and what should be parametarized for the session
